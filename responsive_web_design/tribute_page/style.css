@@ -1,0 +1,44 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: black;
+  color:white;
+}
+
+#main {
+    width:100%;
+}
+
+h1#title{
+    text-align: center;
+}
+#img-div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color:rgb(0, 158, 156);
+  width:100%;
+}
+#img-caption{
+    text-align: center;
+}
+#image {
+  width: 100%;
+  max-width: 416px;
+  margin:0 auto;
+}
+
+p#tribute-info{
+    margin:1.2rem 15vmin;
+    font-size:large;
+}
+
+a#tribute-link{
+    text-decoration: none;
+    color:rgb(0, 158, 156);
+    margin:0 15vmin;
+    padding-bottom: 15vmin;
+
+}
