@@ -8,23 +8,63 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1 id="title">form</h1>
+    <div class="container">
+    <h1 id="title">Submit Project</h1>
     <p id="description">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus
-      debitis quidem sed fugiat quam delectus?
+      Enter the details about yourself and the project that you are submitting
     </p>
     <form id="survey-form">
-      <label id="name-label" for="name">Name</label>
-      <input type="text" id="name" />
-      <label id="email-label" for="email">Email</label>
-      <input type="email" id="email" />
+     <div> <label id="name-label" for="name">Name</label>
+      <input type="text" id="name" placeholder="enter name" required /></div>
+     <div> <label id="email-label" for="email">Email</label>
+      <input type="email" id="email" placeholder="enter email" required /></div>
       <!-- enter html5 error validation -->
-      <label for="number" id="number-label">Age</label>
-      <input type="number" id="number" />
+      <div><label for="number" id="number-label">Age</label>
+      <input
+        type="number"
+        id="number"
+        placeholder="enter age"
+        min="1"
+        max="101"
+      /></div>
       <!-- enter html5 error validation -->
+
+      <select name="dropdown" id="dropdown">
+        <option value="" disabled selected hidden>Select a project</option>
+        <option value="surveypage">Survey Form</option>
+        <option value="tribute page">Tribute Page</option>
+        <option value="portfolio">Portfolio</option>
+        <option value="landingpage">Landing Page</option>
+        <option value="randomquote">Random Quote machine</option>
+      </select>
+<div>
+      <h2>select category of project</h2>
+      <input type="radio" id="frontend" name="projecttype" value="frontend" />
+      <label for="frontend">FrontEnd</label><br />
+      <input type="radio" id="backend" name="projecttype" value="backend" />
+      <label for="backend">BackEnd</label><br />
+      <input type="radio" id="other" name="projecttype" value="other" />
+      <label for="other">Other</label>
+</div>
+
+<div>
+      <h2>Select if any framework used</h2>
+      <input type="checkbox" id="React" name="React" value="React" />
+      <label for="React"> React</label><br />
+      <input type="checkbox" id="Angular" name="Angular" value="Angular" />
+      <label for="Angular"> Angular</label><br />
+      <input type="checkbox" id="Vue" name="Vue" value="Vue" />
+      <label for="Vue"> Vue</label><br />
+</div>
+      <textarea
+        name="extra"
+        id="additional comment"
+        placeholder="additional comments"
+      ></textarea>
 
       <button id="submit">submit</button>
     </form>
+    </div>
   </body>
   <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 </html>
