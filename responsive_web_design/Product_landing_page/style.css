@@ -1,0 +1,43 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+header#header {
+    position: fixed;
+    top:0;
+    width:100%;
+  display: flex;
+  border: 2px solid red;
+  height:10vh;
+  align-items:center ;
+  margin: 0;
+}
+
+header#header > div.logo {
+  width: 40vh;
+}
+
+header#header > nav#nav-bar > ul {
+  width: 60vh;
+  display: flex;
+  justify-content: space-between;
+}
+li.nav-link {
+  list-style: none;
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    background-color: lightgreen;
+  }
+}
