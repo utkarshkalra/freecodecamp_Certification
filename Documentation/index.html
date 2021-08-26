@@ -1,0 +1,358 @@
+<html>
+
+<head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Work+Sans:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <title>
+    MongoDb
+  </title>
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="togglebar">
+      <button id="nav-toggle" onclick="showsidebar()"><span>
+        <svg viewBox="0 0 100 80" width="40" height="40">
+            <rect width="100" height="20"></rect>
+            <rect y="30" width="100" height="20"></rect>
+            <rect y="60" width="100" height="20"></rect>
+          </svg>
+            
+          </span></button>
+    </div>
+    <nav id="navbar">
+      <header>Mongodb Documentation</header>
+      <ul>
+        <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+        <li><a href="#Installation_on_Mac" class="nav-link">Installation on Mac</a></li>
+        <li><a href="#Creating_&_Listing_Databases" class="nav-link">Creating & Listing Databases</a></li>
+        <li><a href="#Running_MongoDB_Compass_and_Creating_Collections" class="nav-link">Running MongoDB Compass and Creating Collections</a></li>
+        <li><a href="#Inserting_documents" class="nav-link">Inserting documents</a></li>
+        <li><a href="#Finding_Documents" class="nav-link">Finding Documents</a></li>
+        <li><a href="#Updating_&_Deleting_Documents" class="nav-link">Updating & Deleting Documents</a></li>
+        <li><a href="#Bulk_Actions" class="nav-link">Bulk Actions</a></li>
+        <li><a href="#Text_Indexing" class="nav-link">Text Indexing</a></li>
+        <li><a href="#Aggregation" class="nav-link">Aggregation</a></li>
+      </ul>
+    </nav>
+    <main id="main-doc">
+      <section class="main-section" id="Introduction">
+        <header>
+          Introduction </header>
+        <p>MongoDb is the most popular NoSQL Database. Incredibly Flexible Schema. In this documentation we are going to learn about installation , creatind Collection , database and updating deleting data. A brief introduction to aggregation.
+        <p>
+
+      </section>
+
+      <section class="main-section" id="Installation_on_Mac">
+        <header>
+          Installation on Mac</header>
+        <p>We are going to install mongoDB and mongoDb compass which is GUI platform built to easily use mongodb.</p>
+        <ul>
+          <li>Easiest way to install mongodb on mac is by using homebrew. So we expect that you have that installed already in your computer.</li>
+          <li>Now Before we go forward let me tell you that
+            <code>brew install mongodb</code>
+            won't work.
+            Formula mongodb has been removed from homebrew-core. Check pr-43770 from homebrew-core
+
+            <code> To our users: if you came here because mongodb stopped working for you, we have removed it from the Homebrew core formulas since it was migrated to a non open-source license.
+            </code>
+
+            Fortunately, the team of mongodb is maintaining a custom Homebrew tap. You can uninstall the old mongodb and reinstall the new one from the new tap.
+            <code> brew tap mongodb/brew</code>
+
+            <code> brew install mongodb-community</code>
+            <code>brew services start mongodb-community</code>
+            cudos! you have finally installed mongodb on your mac. Now to confirm that it is installed on your system type
+            <code>mongo --version</code>
+            in your terminal and if something pops up you are good to go.
+          </li>
+          <li>Now let's install mongoDb compass. visit this <a href="https://www.mongodb.com/try/download/compass">link</a> choose your system configuration hit download then open that downloaded file and you are good to go.</li>
+          <li>
+            Now, for running mongoDb you need to run <code>mongod</code> in your terminal and then to connect to that server you need to open a new terminal and type <code>mongosh</code> and it will automatically connect you to your server and thus you will be seeing a mongoDB shell where you can interact with your data.
+
+            now if you face any error in this step. Please visit the official installation page of mongodb <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/">Installation Guide</a>
+          </li>
+        </ul>
+
+      </section>
+
+      <section class="main-section" id="Creating_&_Listing_Databases">
+        <header>
+          Creating & Listing Databases
+        </header>
+        <li>creating Database
+          <p> use database-name is also used your changing current database<code>
+              use database-name
+            </code>
+        </li>
+
+        <li>listing Database <code>
+            show dbs
+          </code></li>
+      </section>
+
+      <section class="main-section" id="Running_MongoDB_Compass_and_Creating_Collections">
+        <header>
+          Running MongoDB Compass and Creating Collections
+        </header>
+        <p>
+          As told earlier run your mongodb server.Now, Lets open MongoDb compass. Now once its open you will see an input field thats with mongo URL. just press connect and you are connected to your mongodb server. Now you can simply use Gui to create database for now we will use compass to verify that commands on our terminal are running </p>
+        </ul>
+        <ul>
+          <li>creating Database <code>
+              use database-name
+            </code></li>
+          <li>Now as the database is created lets create A collection <code>db.createCollection("collection-name")</code>
+            as we are all learners i decided to name my collection leaners, you can decide for youselves.
+            <br>
+            now let's see whether our database and collections are created by using compass. hit the refresh icon on the sidebar. There you shoud be able to see the database name. Now if some point in time you wanna drop a collection then just <code>db.collection_name.drop()</code>
+          </li>
+        </ul>
+
+      </section>
+
+      <section class="main-section" id="Inserting_documents">
+        <header>
+          Inserting documents</header>
+        <p>Mongodb uses BSON, It is quite similar to JSON </li>
+          <li>Datatypes that we can use while using
+            MongoDb
+        </p>
+        <ul>
+
+          <pre><code>
+              {
+                string:"abc",
+                int:12,
+                double:3.5,
+                boolean:true,
+                array:{1,2,3},
+                object:{attr1:"attr1",attr2:"attr2"},
+                date:new Date("yyy-mm-dd"),
+                object_id:object_id,
+                no_value:null
+              }
+            </code></pre>
+          So we can store these types of data in it and some additional ones are regular expressions, Javascript code and Binary Data
+          </li>
+          <h3>Now lets insert documments in our database</h3>
+          <ul>
+            <p>insertOne</p>
+            <code>db.collection_name.insertOne({name:"learner123",interest:"MongoDB" interestLevel:9})</code>
+            <li> hit enter and voila ! you just inserted a record in your collection, give yourselves a pat on the back :-)</li>
+
+            <p>Insert Many</p>
+            <code>db.collection_name.insertMany([obj1,obj2,obj3])</code>
+          </ul>
+          <li>Now by default mongo automaitcally adds the _id to an object but we can do it ourselves too, so it totally depends onyou how you want it to be.</li>
+        </ul>
+
+      </section>
+
+      <section class="main-section" id="Finding_Documents">
+        <header>
+          Finding Documents
+        </header>
+        <p>Now a person may have various requirements. He may want to find all the documents in a database or some specific ones or a unique documents based on some unique value, we will look at these one by one </p>
+        <ul>
+          <li>Finding all the documents :- </li>
+          <code>db.leaners.find({})</code>
+          <p>this will return all the documents present in our database learners</p>
+          <li>Finding all the documents but seeing specific properties of that document :- </li>
+          <code>db.leaners.find({},{_id:0})</code>
+          <p>this will return all the documents present in our database learners but won't show their ids.</p>
+          <li>Finding all the documents but to a certain limit</li>
+          <code>db.leaners.find({}).limit(2)</code>
+          <p> this will return only the top 2 documents present in our database learners.</p>
+          <li>Finding all the documents and displaying them in sorted order</li>
+          <code>db.leaners.find({}).sort({prop1:1,prop2:-1})</code>
+          <p>this will return all the documents in a sorted manner according to the specified property where positive 1 indicates ascending order and negative 1 indicates descending order.</p>
+          <li>Finding all the documents having property's value equal to something</li>
+          <code>db.leaners.find({prop1:"learner1"})</code>
+          <p>this will return all the documents whose prop1 === learner1</p>
+          <code>db.leaners.find({prop1:"learner1", prop2:"learnerage"})</code>
+          the code above works as and logic if prop1 === learner1 && prop2===learnerage then only return it
+          <code>db.learners.find($or: [{prop1:"learner1"},{prop2:"learnerage"}])</code>
+          <p>the code written above works as or logic.</p>
+          <li>Finding all the documents having property's value greater than or greater than and equal to similarily for less than something</li>
+          <code>db.leaners.find({prop12:{$gt:9}})</code>
+          <pre>
+        gt-greater than
+        lt-lower than
+        gte-greater than or equal to
+        lte-lower than or equal to 
+        </pre>
+          <li>$in</li>
+          <code>db.leaners.find({prop123:{$in:[9,10,17]})</code>
+          <p>it will return all those docs whose prop123 is equal to either one of 9, 10 or 17.</p>
+          <li>Return a doc if it has mentioned prop</li>
+          <code>db.leaners.find({prop123:{$exists:true})</code>
+          <p>it will return all those docs who have prop123. As we know that there is no predefined scheme of things that we are storing in database so sometimes we could feel a need to see the documents with a specific prop in it and in such cases the code written above helps a lot.</p>
+          <li>$type</li>
+          <code>db.leaners.find({prop123:{$type:2})</code>
+
+          <p>here the number written in front of type denotes the type of prop, for example in our case it is a string as 2 corresponds to string. Here's a link for all these datatypes-number relation <a href="https://docs.mongodb.com/manual/reference/operator/query/type/#available-types">Available types</a></p>
+
+          <li>finding docs according to the value of an array at an index</li>
+          <code>db.leaners.find({"proparray.0":3)</code>
+          <p>return those docs whose proparray[0]===3</p>
+
+          <li>finding docs whose array contains a particular element</li>
+          <code>db.leaners.find({proparray:{elemMatch:{$gte:3}})</code>
+          <p>return those docs whose proparray contains elements greater or equal to 3</p>
+
+          <li>finding docs whose array is particular size</li>
+          <code>db.leaners.find({proparray:{$size:3})</code>
+          <p>return those docs whose proparray's size is equal to 3</p>
+        </ul>
+        using these you can query a database to get a particular element.
+      </section>
+
+      <section class="main-section" id="Updating_&_Deleting_Documents">
+        <header>
+          Updating & Deleting Documents
+        </header>
+        <ul>
+          Updating records
+          <li>updateOne </li>
+          <pre><code>db.leaners.updateOne(
+          {prop1:"hello"},
+          {
+            $set:
+              {prop1: "hello world" }
+          })</code></pre>
+          <p>this will find a doc with prop1 === "hello" and the update it to " hello world"</p>
+          <li>updateMany </li>
+          <pre><code>db.leaners.updateMany(
+          {prop1:"hello"},
+          {
+            $set:
+              {prop1: "hello world" }
+          })</code></pre>
+          <p>this will find all the docs with prop1 === "hello" and the update it to " hello world"</p>
+
+          <li>replaceOne </li>
+          <pre><code>db.leaners.replaceOne(
+            {prop1:"hello"},
+            {prop1: "hello world" , prop2:3, prop4:true}
+          )</code></pre>
+          <p>this will find all the docs with prop1 === "hello" and the replace that doc with mentioned doc</p>
+          Deleting a record.
+          <li>deleteOne</li>
+          <code>db.leaners.deleteOne({prop1:"hello"})</code>
+          <p>This will find the document according to the condition and will then delete it from the database.</p>
+
+          <li>deleteMany</li>
+          <code>db.leaners.deleteMany({prop1:"hello"})</code>
+          <code>db.leaners.deleteMany({})</code>
+          <p>This will find the document according to the condition and then delete it, if the condition is empty whole of the collection's documents will get deleted.</p>
+        </ul>
+      </section>
+
+      <section class="main-section" id="Bulk_Actions">
+        <header>
+          Bulk Actions
+        </header>
+        <p>here we can multiple commands and they will get executed in order</p>
+
+        </pre>
+        <ul>
+          <li>bulkWrite</li>
+          <pre>
+    <code>
+      db.bulkWrite([
+        {insertOne:{name:"okok"}}
+        {insertOne:{name:"hello",age:"13"}}
+        {updateOne:
+          {
+            filter:{name:"hello"},
+            update:{$set:{name:"hello world"}}
+          }
+      ])
+    </code>
+    <p>all these queries will run in order doing what they are meant to.</p>
+      </ul>
+ </section>
+
+      <section class="main-section" id="Text_Indexing">
+       <header>
+    Text Indexing
+  </header>
+  <p>you can learn more about it later whenever you wanna incorporate a searching mechanism in your database. Here's is a <a href="https://youtu.be/dTN8cBDEG_Q" target="_blank" referer="no-referer">link</a> to a video for the same</p>
+
+</section>
+
+      <section class="main-section" id="Aggregation">
+  <header>
+    Aggregation
+  </header>
+  <p>It allows us to process data records and produce results. We can figure out some information on data by doing some computation. <br> Let us consider an example <pre><code>
+    
+db.purchase_orders.insertMany(
+     [
+          {product: "toothbrush", total: 4.75, customer: "Mike"},
+          {product: "guitar", total: 199.99, customer: "Tom"},
+          {product: "milk", total: 11.33, customer: "Mike"},
+          {product: "pizza", total: 8.50, customer: "Karen"},
+          {product: "toothbrush", total: 4.75, customer: "Karen"},
+          {product: "pizza", total: 4.75, customer: "Dave"},
+          {product: "toothbrush", total: 4.75, customer: "Mike"},
+     ]
+)
+</code></pre>
+          </p>
+
+          <h4>Some functions that you should know beforehand</h4>
+          <pre><code>db.purchase_orders.count({product:"toothbrush"})</code></pre>
+          <p>it will count all the orders whose product is toothbrush</p>
+          <pre><code>db.purchase_orders.distinct("product")</code></pre>
+          <p>it will print all the distinct products in collection</p>
+          <h3>Aggregate</h3>
+          <pre><code>db.purchase_orders.aggregate([
+          {$match:{}},
+          {$group:{_id:"$customer",total:{$sum:"$total"}}}
+        ])</code></pre>
+          <p>Now match will filter the data collection</p>
+          <p>Then in group we are specifying how we want the information that we ae going to get back. Now the _id:"$customer" is actually grouping up all those data that have same customer name and the sum is adding the total for such groups</p>
+
+          <p>lets take a look at another example</p>
+
+          <pre><code>
+  db.purchase_orders.aggregate([
+  {$match:{}},
+  {$group:{_id:"$product",total:{$sum:"$total"}}}
+  ])
+</code></pre>
+
+          <p>Here we are grouping according to the products and getting there sum according to products</p>
+          <p>We can do multiple type of things using aggregation, More info about that will be added later in future</p>
+      </section>
+
+    </main>
+  </div>
+</body>
+<!-- <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script> -->
+
+<script>
+
+const projectName = "technical-docs-page";
+
+let doshowsidebar = false;
+
+const showsidebar = () => {
+  doshowsidebar = !doshowsidebar;
+  console.log(doshowsidebar ? "show" : "hide");
+
+  let sidebar = document.getElementById("navbar");
+
+  sidebar.style.display = doshowsidebar ? "block" : "none";
+};
+
+</script>
+</html>
+
+
+
