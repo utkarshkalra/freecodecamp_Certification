@@ -5,13 +5,20 @@
   --font: "Josefin Sans", sans-serif;
   --headingfont: "Work Sans", sans-serif;
 }
-
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+html,
 body {
+  height: auto;
+  margin: 0%;
+  box-sizing: border-box;
+  overflow-x: hidden;
   background: var(--backgroundcolor);
   color: var(--fontcolor);
   font-family: var(--font);
-  overflow-x: hidden;
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -35,10 +42,18 @@ header {
   font-size: 1.6rem;
   font-family: var(--headingfont);
 }
+li {
+  margin-top: 10px;
+}
+.wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
 
 .togglebar {
   background: #222;
-  width: 58px;
+  width: 48px;
   height: 100%;
   position: fixed;
   display: none;
@@ -61,12 +76,6 @@ header {
 }
 .togglebar svg {
   fill: white;
-}
-
-.wrapper {
-  position: relative;
-  height: 100vh;
-  width: 100vw;
 }
 
 #navbar {
@@ -108,6 +117,19 @@ header {
 }
 
 @media only screen and (max-width: 1000px) {
+  body {
+    font-size: 0.9rem;
+    line-height: 25px;
+  }
+  header {
+    font-size: 1.3rem;
+    font-family: var(--headingfont);
+  }
+  .wrapper {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  }
   .togglebar {
     display: block;
     margin-right: 5px;
@@ -116,19 +138,20 @@ header {
   #navbar {
     display: none;
     background: #222;
-    margin-left: 60px;
+    margin-left: 50px;
     /*     width:40%; */
-    width: 50%;
-    max-width: 60%;
+    width: 70%;
+    max-width: 70%;
   }
 
   #main-doc {
-    width: 100%;
-    margin-left: 65px;
+    width: 90%;
+    margin-left: 60px;
   }
 
   .main-section {
-    max-width: 82%;
-    padding-right: 20px;
+    max-width: 83%;
+    width: 83%;
+    padding: 20px;
   }
 }
